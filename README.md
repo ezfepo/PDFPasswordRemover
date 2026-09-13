@@ -33,3 +33,7 @@ This is never required and never committed — the field is blank by default.
 Each password-protected PDF found is decrypted in place. The original encrypted file is kept alongside it with a `.pwd` extension as a backup; PDFs that aren't password-protected are left untouched.
 
 > **Note:** This modifies files in place. Keep a backup of the folder before processing if you want to be safe — the `.pwd` file is the only copy of the original kept by the tool.
+
+## License
+
+[MIT](LICENSE)
