@@ -1,33 +1,55 @@
-﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
-namespace PDFPasswordRemover
+namespace PDFPasswordRemover;
+
+public partial class frmMain : Form
 {
-    public partial class frmMain : Form
+    public frmMain()
     {
-        public frmMain()
+        InitializeComponent();
+        Load += frmMain_Load;
+    }
+
+    private void frmMain_Load(object? sender, EventArgs e)
+    {
+        txtDirectory.Text = Properties.Settings.Default.LastDirectory;
+        txtPassword.Text = LocalEnv.Get("DEFAULT_PASSWORD") ?? string.Empty;
+    }
+
+    private void btnSelect_Click(object? sender, EventArgs e)
+    {
+        DialogResult result = fbdMain.ShowDialog();
+        if (result == DialogResult.OK)
         {
-            InitializeComponent();
+            txtDirectory.Text = fbdMain.SelectedPath;
+            Properties.Settings.Default.LastDirectory = fbdMain.SelectedPath;
+            Properties.Settings.Default.Save();
         }
+    }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+    private async void btnProcess_Click(object? sender, EventArgs e)
+    {
+        string directory = txtDirectory.Text;
+        string password = txtPassword.Text;
+
+        btnProcess.Enabled = false;
+        btnSelect.Enabled = false;
+        try
         {
-            DialogResult result = fbdMain.ShowDialog();
-            if (result == DialogResult.OK)
+            await Task.Run(() =>
             {
-                txtDirectory.Text = fbdMain.SelectedPath;
-            }
+                string[] oFiles = Directory.GetFiles(directory, "*.pdf", SearchOption.AllDirectories);
+
+                foreach (string oFile in oFiles)
+                {
+                    modiTextSharp.ProcessFile(oFile, password);
+                }
+            });
         }
-
-        private void btnProcess_Click(object sender, EventArgs e)
+        finally
         {
-            string[] oFiles = Directory.GetFiles(txtDirectory.Text, "*.pdf", SearchOption.AllDirectories);
-
-            foreach (string oFile in oFiles)
-            {
-                modiTextSharp.ProcessFile(oFile, txtPassword.Text);
-            }
+            btnProcess.Enabled = true;
+            btnSelect.Enabled = true;
         }
     }
 }

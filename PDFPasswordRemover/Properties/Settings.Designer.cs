@@ -26,5 +26,19 @@ namespace PDFPasswordRemover.Properties
                 return defaultInstance;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastDirectory
+        {
+            get
+            {
+                return ((string)(this["LastDirectory"]));
+            }
+            set
+            {
+                this["LastDirectory"] = value;
+            }
+        }
     }
 }

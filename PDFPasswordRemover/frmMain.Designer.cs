@@ -1,11 +1,13 @@
-﻿namespace PDFPasswordRemover
+﻿#nullable enable
+
+namespace PDFPasswordRemover
 {
     partial class frmMain
     {
         /// <summary>
         /// Variable del diseñador necesaria.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private System.ComponentModel.IContainer? components = null;
 
         /// <summary>
         /// Limpiar los recursos que se estén usando.
@@ -48,9 +50,7 @@
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // fbdMain
-            // 
-            this.fbdMain.ShowNewFolderButton = false;
-            // 
+            //
             // btnSelect
             // 
             this.btnSelect.Location = new System.Drawing.Point(14, 15);
@@ -71,8 +71,7 @@
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.Size = new System.Drawing.Size(925, 26);
             this.txtDirectory.TabIndex = 3;
-            this.txtDirectory.Text = "D:\\GitHub\\Utils\\PDFPasswordRemover\\test";
-            // 
+            //
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(308, 21);
@@ -80,8 +79,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(185, 26);
             this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "REDACTED";
-            // 
+            //
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
@@ -104,6 +102,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
             this.Name = "frmMain";
             this.Text = "PDF Password Remover";
             this.ResumeLayout(false);
@@ -113,12 +112,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnProcess;
-        private System.Windows.Forms.FolderBrowserDialog fbdMain;
-        private System.Windows.Forms.Button btnSelect;
-        private System.Windows.Forms.TextBox txtDirectory;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Button btnProcess = null!;
+        private System.Windows.Forms.FolderBrowserDialog fbdMain = null!;
+        private System.Windows.Forms.Button btnSelect = null!;
+        private System.Windows.Forms.TextBox txtDirectory = null!;
+        private System.Windows.Forms.TextBox txtPassword = null!;
+        private System.Windows.Forms.Label lblPassword = null!;
     }
 }
 
